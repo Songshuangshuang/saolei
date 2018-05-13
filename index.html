@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+    		*{
+    			margin: 0px;
+    			padding: 0px;
+    		}
+    		.main{
+            width:50%;
+            background-color: #fff;
+            margin: 0 auto;
+            position: relative;
+            }
+             .main .shezhi{
+        		width: 60%;
+        		height: 8rem;
+        		margin: 0 auto;
+        		background-color: #fff;
+        		padding-top: 1rem;
+        		text-align: center;
+            }
+            .main .shezhi h2{
+            		margin-top: 0rem;
+            		height: 3rem;
+            		line-height: 3rem;
+            		font-size: 2rem;
+            		text-align: center;
+            		color: #FFFFFF;
+            }
+            #text_time{
+            		width: 5rem;
+            		height: 3rem;
+            		line-height: 3rem;
+            		margin-left: 1rem;
+            		color: #fff;
+            		text-align: center;
+            		background-color: #5F9EA0;
+            		border: 2px solid #fff;
+            		border-radius: 7px;
+            		color: orangered;
+            }
+            #btn{
+            		width: 3rem;
+            		height: 3rem;
+            		display: inline-block;
+            }
+            .btn1{
+            		background: url(面无表情.png);
+            		background-size: 3rem 3rem;
+            }
+            .btn2{
+            		background: url(中毒.png);
+            		background-size: 3rem 3rem;
+            }
+            .btn3{
+            		background: url(酷-1.png);
+            		background-size: 3rem 3rem;
+            }
+           	#text_shuliang{
+           		    width: 5rem;
+            		height: 3rem;
+            		margin-right: 1rem;
+            		line-height: 3rem;
+            		color: #fff;
+            		background-color: #5F9EA0;
+            		border: 2px solid #fff;
+            		border-radius: 7px;
+            		color: orangered;
+           	}
+            .zhedang{
+            		position: absolute;
+            		width: 100%;
+            		height: 77vh;
+            		z-index: 100;
+            }
+            .saolei{
+                width:100%;
+                height:77vh;
+                text-align:center;
+                padding-top:1rem;
+               	padding-bottom: 2rem;
+            }
+            .main .saolei .leiqu{
+                display:inline-block;
+                width:2.5rem;
+                height:2.5rem;
+                border:#000 1px solid;
+                margin-left:-1px;
+                margin-top:-1px;
+            }
+            .main .saolei .leiqu .zhengmian{
+                width:2.5rem;
+                height:2.5rem;
+                border:1px #5F9EA0 outset;
+                background:#FF7F50;
+                opacity:1;
+                position:absolute;
+                z-index:40;
+            }
+            .main .saolei .leiqu .chaqi{
+                width:2.5rem;
+                height:2.5rem;
+                border:1px #CCCCCC outset;
+                background:#093;
+                opacity:1;
+                position:absolute;
+                z-index:30;
+            }
+            .main .saolei .leiqu .chaqi .sanjiao{
+                position:absolute;
+                width:0;
+                height:0;
+                border-top:0.4rem solid transparent;
+                border-bottom:0.4rem solid transparent;
+                border-right:0.8rem solid #f00;
+                left:5px;
+                top:5px;
+            }
+            .main .saolei .leiqu .chaqi .shuxian{
+                position:absolute;
+                width:1px;
+                height:18px;
+                top:6px;
+                left:13px;
+                background:#FFF;
+            }
+            .main .saolei .leiqu .chaqi .hengxian{
+                position:absolute;
+                width:10px;
+                height:1px;
+                bottom:4px;
+                left:8px;
+                background:#FFF;
+            }
+            .main .saolei .leiqu .lei,
+            .main .saolei .leiqu .shuzi{
+                width:2.5rem;
+                height:2.5rem;
+                opacity:1;
+                border:#CCC 1px solid;
+                position:absolute;
+                line-height:2.5rem;
+                text-align:center;
+                font-weight:bold;
+                font-size:18px;
+                background:#FFF;
+            }
+            .main .saolei .leiqu .lei .lei_i{
+                width:2.5rem;
+                height:2.5rem;
+                background:url(炸弹.png) no-repeat center;
+                background-size: 2.5rem 2.5rem;
+                opacity:1;
+                position:absolute;
+                border-radius:11px;
+            }
+            .tools{
+    			width: 100%;
+    			height: 5rem;
+            }
+            .tools .return{
+            		float: left;
+            		width: 4rem;
+            		height: 4rem;
+            		margin-left: 1.5rem;
+            		background-color: rgba(0, 0, 0, 0.1);
+            		background-image: url(返回.png);
+            }
+            .tools .hongqi{
+            		float: right;
+            		width: 3rem;
+            		height: 3rem;
+            		margin-right: 1.5rem;
+            		background-color: rgba(0, 0, 0, 0.1);
+            		background-image: url(红旗.png);
+
+            }
+    </style>
+</head>
+<body>
+	<div class="main" id="main" style="display: none;">
+        <div class="shezhi">
+    		<h2 class='dengji'>初级</h2>
+    		<div id="text_time" style="display: inline-block; float: left;">0</div>
+            <div id="btn" class="btn1" onclick="startgame()"></div>
+            <div id="text_shuliang" style="display: inline-block;float: right;">0</div>
+        </div>
+        <div class="zhedang" id="zhedang"></div>
+        <div class="saolei" id="saolei">
+        		<div class="ranks">
+	            <div class="leiqu" id="leiqu_{index}">
+	                <div class="zhengmian" id="zhengmian_{index}"  onclick="diankai({index})"></div>
+	                <div class="chaqi" id="chaqi_{index}" onclick="quxiaochaqi({index})">
+	                    <div class="sanjiao"></div>
+	                    <div class="shuxian"></div>
+	                    <div class="hengxian"></div>
+	                </div>
+	                <div class="lei" id="lei_{index}" onclick="cailei({index})">
+	                       <div class="lei_i"></div>
+	                </div>
+	                <div class="shuzi" id="shuzi_{index}"></div>
+	            </div>
+	        </div>
+        </div>
+        <div class="tools">
+        		<div class="hongqi" onclick="hongqi()"></div>
+        </div>
+    </div>
+	<script>
+	var origin = $('.saolei')[0].innerHTML;
+	var qi = false;
+	var number = '';
+	var rows = '';
+	var cols = '';
+	var t;
+	var start_index;//定义一个全局变量，用来指示有没有布置雷区，1为未布置，0为开始
+    var arr_lei=[];//所有可布雷的地方
+    
+    show(5,10,10);
+    
+    function $(id){
+		if(id.substr(0,1)=='.'){
+            return document.getElementsByClassName(id.substr(1));
+        }else if(id.substr(0,1)=='#'){
+            return document.getElementById(id.substr(1));
+        }else{
+        	return document.getElementsByTagName(id);
+        }
+	}
+    
+	function show(Num, rows1, cols1){
+		number = Num;
+		$('.main')[0].style.display = 'block';
+		rows = rows1;
+		cols = cols1;
+		addelemg(rows, cols, '{index}');
+	}
+    //创建每个小雷区
+    function addelemg(rows, cols, index){ 
+        var ranks = new Array();
+        var reg = new RegExp(index,'g');
+        for(var i=0;i<rows;i++){
+        		ranks[i] = new Array();
+        		for(var j = i*cols; j < i*cols + cols; j++){
+                    //用正则替换掉id
+        			var _html=$('.ranks')[0].innerHTML.replace(reg,j).replace(/^\s*/,'').replace(/\s*$/,''); 
+        			ranks[i].push(_html);
+        		}
+        		var div = document.createElement('div');
+        		div.className = 'ranks';
+        		$('.saolei')[0].appendChild(div);
+        }
+        for(var i = 0; i < ranks.length; i++){
+        	$('.ranks')[i].innerHTML=ranks[i].join('');
+        }
+    }
+    //清空所有雷区
+    function reelemg(){
+    		$('.saolei')[0].innerHTML = origin;
+    }
+    //小红旗
+    function hongqi(){
+	    	var zhengmian = $('.zhengmian');
+	    	var lei = $('.lei');
+    		if(!qi){
+	    		for(let i = 0; i < zhengmian.length; i++){
+	    			zhengmian[i].onclick = function(){
+	    				chaqi(i);
+	    			}
+	    		}
+	    		for(let i = 0; i < lei.length; i++){  
+	    			lei[i].onclick = function(){
+	    				chaqi(i);
+	    			}
+	    		}
+	    		$('.hongqi')[0].style.backgroundColor = 'red';
+	    		qi = true;
+	    	}else{
+	    		for(let i = 0; i < zhengmian.length; i++){
+	    			zhengmian[i].onclick = function(){
+	    				diankai(i);
+	    			}
+	    		}
+	    		for(let i = 0; i < lei.length; i++){
+	    			lei[i].onclick = function(){
+	    				cailei(i);
+	    			}
+	    		}
+	    		$('.hongqi')[0].style.backgroundColor = 'rgba(0,0,0,0.1)';
+	    		qi = false;
+	    	}
+    }
+    
+    function startgame(){
+        chongzhi();
+        $('#zhedang').style.zIndex=0;//将遮挡幕布的zindex设为0，置于底层
+        timer();
+        start_index=1;//判断是不是刚开始游戏，实际开始游戏后会重置为0；
+        $('#text_shuliang').innerHTML=number;
+    }
+ 
+ 	function chongzhi(){
+        var html_zhengmian=[];
+        var html_chaqi=[];
+        var html_lei=[];
+        var html_shuzi=[];
+        html_zhengmian=$('.zhengmian');
+        html_chaqi=$('.chaqi');
+        html_lei=$('.lei');
+        html_shuzi=$('.shuzi');
+        for(var i=0;i<rows*cols;i++){
+            html_zhengmian[i].style.zIndex=40;
+            html_chaqi[i].style.zIndex=30;
+            html_lei[i].style.zIndex=1;
+            html_lei[i].style.opacity=0;
+            html_shuzi[i].style.zIndex=20;
+        }
+        arr_lei=[];
+        $('#zhedang').style.zIndex=100;
+        clearTimeout(t);
+        $('#text_time').innerHTML=0;
+        $('#text_shuliang').innerHTML=0;
+        $('#btn').className = 'btn1';
+    }
+
+    function timer(){
+        $('#text_time').innerHTML++;
+        t=setTimeout("timer()",1000);
+    }
+ 	
+ 	function diankai(n){
+        if(start_index==1){//判断是否已经布置了雷区，1为未布置
+            start_index=0;//开始布置雷区，并将状态字置为0
+            arr_lei=[];
+            if(n%cols>0 && n%cols<cols-1)
+                var id=[n-cols-1,n-cols,n-cols+1,n-1,n,n+1,n+cols-1,n+cols,n+cols+1];
+            else if(n%cols==0)
+                var id=[n-cols,n-cols+1,n,n+1,n+cols,n+cols+1];
+            else var id=[n-cols-1,n-cols,n-1,n,n+cols-1,n+cols];
+            for(var i=0;i<rows*cols;i++){
+                if(id.inarr(i)==false) arr_lei.push(i);
+            }
+            bulei(number);
+            diankai(n);
+        }
+        else {//如果不是第一次点开
+            var _id='shuzi_'+n;
+            $('#' + _id).style.zIndex=50;//将当前div.shuzi的zindex设为最高
+            $('#' + _id).innerHTML=leishu(n);//计算当前区域内的雷数
+            if($('#' + _id).innerHTML==''){//没有雷，连锁点开
+                liansuo(n);
+            }
+            shengli();//每次点开，执行一次胜利函数
+        }
+    }
+ 	
+ 	function bulei(num){
+        for(var i=0;i<num;i++){
+            var ran = Random(0,arr_lei.length-1);//随机一个index
+            $('#lei_'+arr_lei[ran]).style.zIndex=45;//将随机到的index对应的div.lei置于最上方
+            arr_lei.splice(ran,1);//将该index对应的下标从arr_lei中移除
+        }
+    }
+ 	
+ 	function liansuo(n){//递归调用
+        var id=[];
+        if(n%cols>0 && n%cols<cols-1)
+            var id=[n-cols-1,n-cols,n-cols+1,n-1,n,n+1,n+cols-1,n+cols,n+cols+1];
+        else if(n%cols==0)
+            var id=[n-cols,n-cols+1,n,n+1,n+cols,n+cols+1];
+        else var id=[n-cols-1,n-cols,n-1,n,n+cols-1,n+cols];
+        for(var i=0;i<id.length;i++){
+            if(id[i]>=0&&id[i]<rows*cols){
+                var _id='shuzi_'+id[i];
+                $('#' + _id).innerHTML=leishu(id[i]);
+                if($('#' + _id).style.zIndex!=50){//如果该格子未被点开，将其点开 如果点开 跳出循环
+                    $('#' + _id).style.zIndex=50;
+                    diankai(id[i]);
+                }
+            }
+        }
+    }
+ 	
+ 	function leishu(n){
+        var id=[];
+		if(n%cols>0 && n%cols<cols-1)
+             var id=[n-cols-1,n-cols,n-cols+1,n-1,n,n+1,n+cols-1,n+cols,n+cols+1];
+        else if(n%cols==0)
+             var id=[n-cols,n-cols+1,n,n+1,n+cols,n+cols+1];
+        else var id=[n-cols-1,n-cols,n-1,n,n+cols-1,n+cols];
+        var n_lei=0;
+        for(var i=0;i<id.length;i++){
+            if(id[i]>=0&&id[i]<rows*cols){
+                if($('#lei_'+id[i]).style.zIndex==45) n_lei++;//如果有雷，n_lei自加1
+            }
+        }
+        if(n_lei==0) n_lei='';//0雷
+        if(n_lei==1) $('#shuzi_'+n).style.color='#003';
+        else if(n_lei==2) $('#shuzi_'+n).style.color='#0f0';
+        else if(n_lei==3) $('#shuzi_'+n).style.color='#f00';
+        else if(n_lei==4) $('#shuzi_'+n).style.color='#006';
+        else if(n_lei==5) $('#shuzi_'+n).style.color='#903';
+        else if(n_lei==6) $('#shuzi_'+n).style.color='#066';
+        else if(n_lei==6) $('#shuzi_'+n).style.color='#000';
+        else $('#shuzi_'+n).style.color='#666';//不同数字的雷，显示不同的颜色
+        return n_lei;//返回雷数
+    }
+ 	
+ 	function shengli(){
+        var flag=1;    
+        for(var k=0;k<arr_lei.length;k++){
+            if($('#shuzi_'+arr_lei[k]).style.zIndex!=50){
+                flag=0;
+                break;
+            }   
+        }
+        if(flag==1){
+            clearTimeout(t);
+            $('#zhedang').style.zIndex=100;
+        	$('#btn').className = 'btn3';
+        }
+    }
+
+	function chaqi(n){
+ 		var _id='chaqi_'+n; 
+ 		if($('#' + _id).style.zIndex=30){
+ 			if($('#text_shuliang').innerHTML != 0){
+ 				$('#' + _id).style.zIndex=50;
+ 				$('#text_shuliang').innerHTML--;  
+ 			}else{
+   				return;
+ 			}
+ 		}
+	}
+ 	
+    function quxiaochaqi(n){
+        var _id='chaqi_'+n; 
+        $('#' + _id).style.zIndex=30;
+        $('#text_shuliang').innerHTML++;
+    }
+
+    function cailei(n){
+        for(var i=0;i<rows*cols;i++){
+            $('.lei')[i].style.opacity=0.6;
+        }
+        $('#lei_'+n).style.opacity=1;//把你点错的那个雷透明成1，提示你这就是你踩到的那个雷
+        clearTimeout(t);
+        $('#zhedang').style.zIndex=100;
+        $('#btn').className = 'btn2';
+    }
+
+    function Random(a,b){
+        return Math.floor(Math.random()*(b - a + 1) + a);
+    }
+
+    Array.prototype.inarr = function(obj){
+        for(var i=0;i<this.length;i++){
+            if(this[i]==obj){
+                return true;
+                break;
+            }
+            continue;
+        }
+        return false;
+    }    
+	</script>
+</body>
+</html>
